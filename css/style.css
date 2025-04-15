@@ -117,3 +117,74 @@
     }
   }
   
+ /* ----------------------------
+   Carousel and 3D Floating Effects
+------------------------------- */
+
+/* The container hides overflowing parts to create the fade effect */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1200px;
+    /* Use your background gradient color here to match the section */
+    background: linear-gradient(135deg, #fafafa, #eaeaea);
+  }
+  
+  /* The carousel is a flex container that will slide left/right */
+  .carousel {
+    display: flex;
+    transition: transform 1s ease-out;
+    will-change: transform;
+    perspective: 1000px;
+  }
+  
+  /* Each carousel item is 20% of the container width with spacing */
+  .carousel-item {
+    flex: 0 0 20%;
+    margin: 0 10px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s, box-shadow 0.5s;
+    transform: perspective(1000px) translateZ(0);
+    text-align: center;
+  }
+  
+  /* 3D Floating Hover Effect */
+  .carousel-item:hover {
+    transform: perspective(1000px) translateZ(50px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style images to cover the item and keep aspect ratio */
+  .carousel-item img {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* Fade effect on the edges of the carousel container using pseudo-elements */
+  .carousel-container::before,
+  .carousel-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .carousel-container::before {
+    left: 0;
+    background: linear-gradient(to right, #fafafa, transparent);
+  }
+  
+  .carousel-container::after {
+    right: 0;
+    background: linear-gradient(to left, #fafafa, transparent);
+  }
+  
